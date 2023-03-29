@@ -15,7 +15,8 @@
                     <img src="{{ asset('auth/img/avatars/avatar.jpg') }}" alt="Charles Hall" class="img-fluid rounded-circle" width="132"
                         height="132" />
                 </div>
-                <form>
+                <form action="{{ route('auth.authenticate') }}" method="POST">
+                    @csrf
                     <div class="mb-3">
                         <label class="form-label">Email</label>
                         <input class="form-control form-control-lg" type="email" name="email"
@@ -30,8 +31,8 @@
                         </small> --}}
                     </div>
                     <div class="text-end mt-3">
-                        <a href="index.html" class="btn btn-lg btn-primary">Sign in</a>
-                        <!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
+                        {{-- <a href="index.html" class="btn btn-lg btn-primary">Sign in</a> --}}
+                        <button type="submit" class="btn btn-lg btn-primary">Sign in</button>
                     </div>
                 </form>
             </div>

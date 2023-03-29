@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/auth')->group(function() {
     Route::prefix('/login')->group(function() {
-        Route::get('/', function() {
-            return view('auth.page.login.index');
-        });
+        Route::get('/', [LoginController::class, 'index'])
+            ->middleware(['guest'])
+            ->name('auth.login');
+
+        Route::post('/', [LoginController::class, 'authenticate'])
+            ->middleware(['guest'])
+            ->name('auth.authenticate');
     });
+
 });

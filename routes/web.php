@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\Home\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,3 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 require __DIR__ . '/auth.php';
+
+Route::group([
+    'prefix' => '/',
+    'middleware' => ['auth'],
+], function() {
+    Route::get('/', [HomeController::class, 'index'])->name('dashboard.index');
+});
