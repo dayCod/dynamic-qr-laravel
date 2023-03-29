@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Dashboard\Employee\EmployeeController;
 use App\Http\Controllers\Dashboard\Home\HomeController;
+use App\Http\Controllers\Dashboard\QR\QRController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,4 +23,10 @@ Route::group([
     'middleware' => ['auth'],
 ], function() {
     Route::get('/', [HomeController::class, 'index'])->name('dashboard.index');
+    Route::prefix('/employee')->group(function() {
+        Route::get('/', [EmployeeController::class, 'index'])->name('dashboard.employee.index');
+    });
+    Route::prefix('/qr')->group(function() {
+        Route::get('/', [QRController::class, 'index'])->name('dashboard.qr.index');
+    });
 });
