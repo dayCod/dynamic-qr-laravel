@@ -30,5 +30,7 @@ Route::group([
     });
     Route::prefix('/qr')->group(function() {
         Route::get('/', [QRController::class, 'index'])->name('dashboard.qr.index');
+        Route::get('/create', [QRController::class, 'create'])->name('dashboard.qr.create');
+        Route::get('/{qr}/edit', [QRController::class, 'edit'])->name('dashboard.qr.edit');
     });
 });
