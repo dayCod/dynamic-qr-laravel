@@ -14,7 +14,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col mt-0">
-                                            <h5 class="card-title">Sales</h5>
+                                            <h5 class="card-title">Total Department</h5>
                                         </div>
 
                                         <div class="col-auto">
@@ -23,10 +23,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h1 class="mt-1 mb-3">2.382</h1>
+                                    <h1 class="mt-1 mb-3">{{ $data['count_total_department'] }}</h1>
                                     <div class="mb-0">
-                                        <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
-                                        <span class="text-muted">Since last week</span>
+                                        <span class="{{ $data['check_whether_today_new_department_data'] > 0 ? 'text-success' : 'text-danger' }}"> <i class="mdi mdi-arrow-bottom-right"></i>{{ '+'.$data['count_total_department'] }}</span>
+                                        <span class="text-muted">Since today</span>
                                     </div>
                                 </div>
                             </div>
@@ -34,7 +34,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col mt-0">
-                                            <h5 class="card-title">Visitors</h5>
+                                            <h5 class="card-title">Total Employees</h5>
                                         </div>
 
                                         <div class="col-auto">
@@ -43,10 +43,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h1 class="mt-1 mb-3">14.212</h1>
+                                    <h1 class="mt-1 mb-3">{{ $data['count_total_employees'] }}</h1>
                                     <div class="mb-0">
-                                        <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
-                                        <span class="text-muted">Since last week</span>
+                                        <span class="{{ $data['check_whether_today_new_employees_data'] > 0 ? 'text-success' : 'text-danger' }}"> <i class="mdi mdi-arrow-bottom-right"></i> {{ '+'.$data['check_whether_today_new_employees_data'] }} </span>
+                                        <span class="text-muted">Since today</span>
                                     </div>
                                 </div>
                             </div>
