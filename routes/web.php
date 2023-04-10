@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\Department\DepartmentController;
 use App\Http\Controllers\Dashboard\Employee\EmployeeController;
 use App\Http\Controllers\Dashboard\Home\HomeController;
 use App\Http\Controllers\Dashboard\QR\QRController;
@@ -23,14 +24,22 @@ Route::group([
     'middleware' => ['auth'],
 ], function() {
     Route::get('/', [HomeController::class, 'index'])->name('dashboard.index');
+
+    Route::prefix('/department')->group(function() {
+        Route::get('/', [DepartmentController::class, 'index'])->name('dashboard.department.index');
+        Route::get('/create', [DepartmentController::class, 'create'])->name('dashboard.department.create');
+        Route::get('/{department}/edit', [DepartmentController::class, 'edit'])->name('dashboard.department.edit');
+    }); //end route
+
     Route::prefix('/employee')->group(function() {
         Route::get('/', [EmployeeController::class, 'index'])->name('dashboard.employee.index');
         Route::get('/create', [EmployeeController::class, 'create'])->name('dashboard.employee.create');
         Route::get('/{employee}/edit', [EmployeeController::class, 'edit'])->name('dashboard.employee.edit');
-    });
+    }); //end route
+
     Route::prefix('/qr')->group(function() {
         Route::get('/', [QRController::class, 'index'])->name('dashboard.qr.index');
         Route::get('/create', [QRController::class, 'create'])->name('dashboard.qr.create');
         Route::get('/{qr}/edit', [QRController::class, 'edit'])->name('dashboard.qr.edit');
-    });
+    }); //end route
 });

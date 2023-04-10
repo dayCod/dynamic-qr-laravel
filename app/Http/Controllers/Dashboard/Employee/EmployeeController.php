@@ -21,6 +21,15 @@ class EmployeeController extends Controller
         ]);
     }
 
+    public function createEmployee(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email'],
+            'department_id' => ['required', 'exists:departments,id'],
+        ]);
+    }
+
     public function edit($id)
     {
         return view('dashboard.employee.edit', [
