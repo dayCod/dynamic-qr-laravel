@@ -16,13 +16,13 @@
                         @csrf
                         <div class="mb-3">
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                placeholder="Name" name="name" value="{{ old('name') }}">
+                                placeholder="Name" name="name" value="{{ old('name') }}" required>
+                            @error('name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
-                        @error('name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
                         <div class="mb-3">
                             <button type="submit" class="btn btn-secondary">Submit</button>
                         </div>

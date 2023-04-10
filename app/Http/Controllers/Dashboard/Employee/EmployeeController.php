@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Employee;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
@@ -29,8 +30,11 @@ class EmployeeController extends Controller
 
     public function create()
     {
+        $departments = Department::latest()->get();
+
         return view('dashboard.employee.create', [
-            'title' => 'Create Employee'
+            'title' => 'Create Employee',
+            'departments' => $departments,
         ]);
     }
 
@@ -39,7 +43,7 @@ class EmployeeController extends Controller
         $request->validate($this->rules());
 
         $employee = Employee::create([
-            'name' => $request->name,
+            'name' => strtoupper($request->name),
             'email' => $request->email,
             'department_id' => $request->department_id,
         ]);
@@ -58,10 +62,12 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $employee = Employee::find($id);
+        $departments = Department::latest()->get();
 
         return view('dashboard.employee.edit', [
             'title' => 'Edit Employee',
             'employee' => $employee,
+            'departments' => $departments,
         ]);
     }
 
@@ -70,7 +76,7 @@ class EmployeeController extends Controller
         $request->validate($this->rules());
 
         $employee = Employee::find($id)->fill([
-            'name' => $request->name,
+            'name' => strtoupper($request->name),
             'email' => $request->email,
             'department_id' => $request->department_id,
         ])->save();

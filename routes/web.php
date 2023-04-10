@@ -38,7 +38,10 @@ Route::group([
     Route::prefix('/employee')->group(function() {
         Route::get('/', [EmployeeController::class, 'index'])->name('dashboard.employee.index');
         Route::get('/create', [EmployeeController::class, 'create'])->name('dashboard.employee.create');
+        Route::post('/create', [EmployeeController::class, 'createEmployee'])->name('dashboard.employee.store');
         Route::get('/{employee}/edit', [EmployeeController::class, 'edit'])->name('dashboard.employee.edit');
+        Route::put('/{employee}', [EmployeeController::class, 'updateEmployee'])->name('dashboard.employee.update');
+        Route::delete('/{employee}/destroy', [EmployeeController::class, 'deleteEmployee'])->name('dashboard.employee.destroy');
     }); //end route
 
     Route::prefix('/qr')->group(function() {

@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamps();
+            $table->integer('created_at');
+            $table->integer('updated_at');
+            $table->integer('deleted_at')->nullable();
         });
     }
 
@@ -29,5 +31,8 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('employees');
+        Schema::table('employees', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };
