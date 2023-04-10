@@ -27,4 +27,11 @@ class DepartmentController extends Controller
             'title' => 'Edit Department',
         ]);
     }
+
+    public function trash()
+    {
+        return view('dashboard.department.trash', [
+            'title' => 'Trash Department'
+        ]);
+    }
 }

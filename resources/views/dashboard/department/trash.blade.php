@@ -7,14 +7,9 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="d-flex align-items-center gap-2">
-                        <a href="{{ route('dashboard.department.create') }}" class="btn btn-secondary">
-                            <i data-feather="plus"></i>
-                        </a>
-                        <a href="{{ route('dashboard.department.trash') }}" class="btn btn-secondary">
-                            <i data-feather="trash"></i>
-                        </a>
-                    </div>
+                    <a href="{{ route('dashboard.employee.create') }}" class="btn btn-secondary">
+                        <i data-feather="plus"></i>
+                    </a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover">

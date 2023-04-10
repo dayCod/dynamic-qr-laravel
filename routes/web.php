@@ -27,6 +27,7 @@ Route::group([
 
     Route::prefix('/department')->group(function() {
         Route::get('/', [DepartmentController::class, 'index'])->name('dashboard.department.index');
+        Route::get('/trash', [DepartmentController::class, 'trash'])->name('dashboard.department.trash');
         Route::get('/create', [DepartmentController::class, 'create'])->name('dashboard.department.create');
         Route::get('/{department}/edit', [DepartmentController::class, 'edit'])->name('dashboard.department.edit');
     }); //end route
