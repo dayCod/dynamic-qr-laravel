@@ -41,7 +41,7 @@ class DepartmentController extends Controller
         $department = Department::create($data);
 
         $result = (object) [
-            'status' => true,
+            'success' => true,
             'message' => 'Department Berhasil Dibuat',
             'data' => $department
         ];
@@ -70,7 +70,7 @@ class DepartmentController extends Controller
         $department = Department::find($id)->update($data);
 
         $result = (object) [
-            'status' => true,
+            'success' => true,
             'message' => 'Department Berhasil Di Update',
             'data' => $id,
         ];
@@ -78,6 +78,20 @@ class DepartmentController extends Controller
         return redirect()
             ->route('dashboard.department.index')
             ->with('success', $result->message);
+    }
+
+    public function deleteDepartment($id)
+    {
+        $department = Department::find($id);
+        $department->delete();
+
+        $result = (object) [
+            'success' => true,
+            'message' => 'Department Berhasil Dihapus',
+            'department_id' => $id,
+        ];
+
+        return response()->json(['success' => $result->message], 200);
     }
 
     public function trash()

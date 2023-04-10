@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
     <meta name="author" content="AdminKit">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="keywords"
         content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
@@ -19,6 +20,10 @@
 
     <link href="{{ asset('auth/css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- BEGIN: IziToast Alert Library -->
+    <link rel="stylesheet" href="{{ asset('lib/izitoast/dist/css/iziToast.css') }}">
+    <link rel="stylesheet" href="{{ asset('lib/izitoast/dist/css/iziToast.min.css') }}">
+    <!-- END: IziToast Alert-->
 </head>
 
 <body>
@@ -45,95 +50,12 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <!-- BEGIN: IziToast Alert Library -->
+    <script src="{{ asset('lib/izitoast/dist/js/iziToast.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('lib/izitoast/dist/js/iziToast.min.js') }}" type="text/javascript"></script>
     @include('dashboard.layout.app')
     @stack('scripts')
-    <script>
-        $(document).ready(function() {
-            $('.btn-delete').click(function(e) {
-                e.preventDefault()
-                let href = $(this).attr('href')
-                swal({
-                    title: "Warning",
-                    text: "This Data Will be Deleted",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                }).then((result) => {
-                    if (result) {
-                        $(this).parent('div').parent('div').parent('td').parent('tr').remove()
-                        $.ajax({
-                            url: href,
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: 'DELETE',
-                            dataType: 'json',
-                            success: function(res) {
-                                swal({
-                                    title: 'Success',
-                                    text: 'Data Successfully Deleted',
-                                    icon: "success",
-                                    button: "Close"
-                                }).then(() => {
-                                    location.reload()
-                                })
-                            },
-                            error: function(res) {
-                                swal({
-                                    title: "Oops..!",
-                                    text: "Something went Wrong",
-                                    icon: "error",
-                                    button: "Close",
-                                }).then(() => {
-                                    location.reload();
-                                });
-                            }
-                        })
-                    }
-                })
-            })
-        })
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Pie chart
-            new Chart(document.getElementById("chartjs-dashboard-pie"), {
-                type: "pie",
-                data: {
-                    labels: ["Chrome", "Firefox", "IE"],
-                    datasets: [{
-                        data: [4306, 3801, 1689],
-                        backgroundColor: [
-                            window.theme.primary,
-                            window.theme.warning,
-                            window.theme.danger
-                        ],
-                        borderWidth: 5
-                    }]
-                },
-                options: {
-                    responsive: !window.MSInputMethodContext,
-                    maintainAspectRatio: false,
-                    legend: {
-                        display: false
-                    },
-                    cutoutPercentage: 75
-                }
-            });
-        });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
-            var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
-            document.getElementById("datetimepicker-dashboard").flatpickr({
-                inline: true,
-                prevArrow: "<span title=\"Previous month\">&laquo;</span>",
-                nextArrow: "<span title=\"Next month\">&raquo;</span>",
-                defaultDate: defaultDate
-            });
-        });
-    </script>
+    @include('dashboard.layout.script')
 
 </body>
 

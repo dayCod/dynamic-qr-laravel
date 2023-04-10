@@ -32,6 +32,7 @@ Route::group([
         Route::post('/create', [DepartmentController::class, 'createDepartment'])->name('dashboard.department.store');
         Route::get('/{department}/edit', [DepartmentController::class, 'edit'])->name('dashboard.department.edit');
         Route::put('/{department}', [DepartmentController::class, 'updateDepartment'])->name('dashboard.department.update');
+        Route::delete('/{department}/destroy', [DepartmentController::class, 'deleteDepartment'])->name('dashboard.department.destroy');
     }); //end route
 
     Route::prefix('/employee')->group(function() {

@@ -37,14 +37,14 @@
                                             class="btn btn-warning btn-sm rounded">
                                             <i data-feather="edit"></i>
                                         </a>
-                                        <a href="" class="btn btn-danger btn-sm btn-delete rounded">
+                                        <a href="{{ route('dashboard.department.destroy', $department->id) }}" class="btn btn-danger btn-sm btn-delete rounded">
                                             <i data-feather="trash"></i>
                                         </a>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td class="text-center" colspan="3">{{ __('Data Kosong') }}</td>
+                                    <td class="text-center" colspan="4">{{ __('Data Kosong') }}</td>
                                 </tr>
                             @endforelse
                         </tbody>
