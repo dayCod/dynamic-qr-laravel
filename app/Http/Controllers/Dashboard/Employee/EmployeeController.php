@@ -19,8 +19,11 @@ class EmployeeController extends Controller
 
     public function index()
     {
+        $employees = Employee::latest()->get();
+
         return view('dashboard.employee.index', [
-            'title' => 'Employee'
+            'title' => 'Employee',
+            'employees' => $employees,
         ]);
     }
 
@@ -54,8 +57,11 @@ class EmployeeController extends Controller
 
     public function edit($id)
     {
+        $employee = Employee::find($id);
+
         return view('dashboard.employee.edit', [
             'title' => 'Edit Employee',
+            'employee' => $employee,
         ]);
     }
 
