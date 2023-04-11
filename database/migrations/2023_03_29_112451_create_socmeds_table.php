@@ -21,9 +21,11 @@ return new class extends Migration
             $table->foreignId('qr_id')->constrained('q_r_s')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->string('url');
+            $table->string('string');
             $table->string('type', 30);
-            $table->timestamps();
+            $table->integer('created_at');
+            $table->integer('updated_at');
+            $table->integer('deleted_at')->nullable();
         });
     }
 

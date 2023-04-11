@@ -18,7 +18,9 @@ return new class extends Migration
             $table->foreignId('employee_id')->constrained('employees')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->timestamps();
+            $table->integer('created_at');
+            $table->integer('updated_at');
+            $table->integer('deleted_at')->nullable();
         });
     }
 

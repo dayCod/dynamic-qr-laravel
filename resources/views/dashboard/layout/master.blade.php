@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('lib/izitoast/dist/css/iziToast.css') }}">
     <link rel="stylesheet" href="{{ asset('lib/izitoast/dist/css/iziToast.min.css') }}">
     <!-- END: IziToast Alert-->
+    @include('dashboard.layout.style')
 </head>
 
 <body>
@@ -56,6 +57,7 @@
     @include('dashboard.layout.app')
     @stack('scripts')
     @include('dashboard.layout.script')
+    @include('dashboard.layout.bootstrap-script')
 
 </body>
 

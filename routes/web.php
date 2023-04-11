@@ -47,6 +47,9 @@ Route::group([
     Route::prefix('/qr')->group(function() {
         Route::get('/', [QRController::class, 'index'])->name('dashboard.qr.index');
         Route::get('/create', [QRController::class, 'create'])->name('dashboard.qr.create');
+        Route::post('/create', [QRController::class, 'createQR'])->name('dashboard.qr.store');
         Route::get('/{qr}/edit', [QRController::class, 'edit'])->name('dashboard.qr.edit');
+        Route::put('/{qr}', [QRController::class, 'updateQR'])->name('dashboard.qr.update');
+        Route::delete('/{qr}/destroy', [QRController::class, 'deleteQR'])->name('dashboard.qr.destroy');
     }); //end route
 });
