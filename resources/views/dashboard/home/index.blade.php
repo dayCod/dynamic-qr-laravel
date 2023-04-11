@@ -25,7 +25,7 @@
                                     </div>
                                     <h1 class="mt-1 mb-3">{{ $data['count_total_department'] }}</h1>
                                     <div class="mb-0">
-                                        <span class="{{ $data['check_whether_today_new_department_data'] > 0 ? 'text-success' : 'text-danger' }}"> <i class="mdi mdi-arrow-bottom-right"></i>{{ '+'.$data['count_total_department'] }}</span>
+                                        <span class="{{ $data['check_whether_today_new_department_data'] > 0 ? 'text-success' : 'text-danger' }}"> <i class="mdi mdi-arrow-bottom-right"></i>{{ '+'.$data['check_whether_today_new_department_data'] }}</span>
                                         <span class="text-muted">Since today</span>
                                     </div>
                                 </div>

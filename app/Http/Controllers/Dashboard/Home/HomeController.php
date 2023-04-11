@@ -19,6 +19,8 @@ class HomeController extends Controller
             'check_whether_today_new_employees_data' => $this->checkWhetherTodayNewEmployeesData(),
         ];
 
+        // dd($data);
+
         return view('dashboard.home.index', compact('data'));
     }
 
