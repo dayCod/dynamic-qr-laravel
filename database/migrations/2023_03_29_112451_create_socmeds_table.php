@@ -21,9 +21,8 @@ return new class extends Migration
             $table->foreignId('qr_id')->constrained('q_r_s')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->string('string');
+            $table->string('url');
             $table->string('type', 30);
-            $table->boolean('is_used');
             $table->timestamps();
         });
     }
