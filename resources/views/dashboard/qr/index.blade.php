@@ -20,6 +20,7 @@
                                 <th class="text-center" scope="col">QR</th>
                                 <th class="text-center" scope="col">Limit</th>
                                 <th class="text-center" scope="col">Status</th>
+                                <th class="text-center" scope="col">Created at</th>
                                 <th class="text-center" scope="col">Handle</th>
                             </tr>
                         </thead>
@@ -58,6 +59,7 @@
                                     </td>
                                     <td class="text-center">{{ $qr->limit }}</td>
                                     <td class="text-center">{{ $qr->status == 0 ? 'valid' : 'invalid' }}</td>
+                                    <td class="unix-date text-center"></td>
                                     <td class="text-center">
                                         <a href="{{ route('dashboard.qr.edit', $qr->id) }}"
                                             class="btn btn-warning btn-sm rounded">
@@ -82,12 +84,8 @@
     </div>
 @endsection
 
-{{-- @push('scripts')
+@push('scripts')
 <script>
-    $(document).ready(function() {
-        $('#modal').click(function() {
-            $('.modal').removeClass('d-none')
-        })
-    })
+    $(document).ready(function() { unixTimezone('{!! json_encode($qrs) !!}') })
 </script>
-@endpush --}}
+@endpush
