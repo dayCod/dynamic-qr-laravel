@@ -15,19 +15,19 @@
             </a>
         </li>
 
-        <li class="sidebar-item {{ !Request::routeIs('dashboard.department.index') ? : 'active' }}">
+        <li class="sidebar-item {{ !Request::routeIs('dashboard.department.*') ? : 'active' }}">
             <a class="sidebar-link" href="{{ route('dashboard.department.index') }}">
                 <i class="align-middle" data-feather="user"></i> <span class="align-middle">Department</span>
             </a>
         </li>
 
-        <li class="sidebar-item {{ !Request::routeIs('dashboard.employee.index') ? : 'active' }}">
+        <li class="sidebar-item {{ !Request::routeIs('dashboard.employee.*') ? : 'active' }}">
             <a class="sidebar-link" href="{{ route('dashboard.employee.index') }}">
                 <i class="align-middle" data-feather="user"></i> <span class="align-middle">Employee</span>
             </a>
         </li>
 
-        <li class="sidebar-item {{ !Request::routeIs('dashboard.qr.index') ? : 'active'  }}">
+        <li class="sidebar-item {{ !Request::routeIs('dashboard.qr.*') ? : 'active'  }}">
             <a class="sidebar-link" href="{{ route('dashboard.qr.index') }}">
                 <i class="align-middle" data-feather="minimize"></i> <span class="align-middle">QR</span>
             </a>
