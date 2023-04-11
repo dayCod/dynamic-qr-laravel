@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/errors.php';
 
 Route::group([
     'prefix' => '/',
@@ -52,4 +53,8 @@ Route::group([
         Route::put('/{qr}', [QRController::class, 'updateQR'])->name('dashboard.qr.update');
         Route::delete('/{qr}/destroy', [QRController::class, 'deleteQR'])->name('dashboard.qr.destroy');
     }); //end route
+});
+
+Route::group(['prefix' => 'qr'], function () {
+    Route::get('/short/{url_key}/{id}', [QRController::class, 'qrProccessing'])->name('qr.process');
 });

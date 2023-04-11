@@ -18,6 +18,8 @@
                                 <th class="text-center" scope="col">#</th>
                                 <th class="text-center" scope="col">Employee</th>
                                 <th class="text-center" scope="col">QR</th>
+                                <th class="text-center" scope="col">Limit</th>
+                                <th class="text-center" scope="col">Status</th>
                                 <th class="text-center" scope="col">Handle</th>
                             </tr>
                         </thead>
@@ -43,7 +45,7 @@
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        {!! QrCode::size(300)->generate('https://google.com') !!}
+                                                        {!! QrCode::size(300)->generate(route('qr.process', [Str::slug($qr->employee->name), $qr->id])) !!}
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
@@ -54,6 +56,8 @@
                                             </div>
                                         </div>
                                     </td>
+                                    <td class="text-center">{{ $qr->limit }}</td>
+                                    <td class="text-center">{{ $qr->status == 0 ? 'valid' : 'invalid' }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('dashboard.qr.edit', $qr->id) }}"
                                             class="btn btn-warning btn-sm rounded">

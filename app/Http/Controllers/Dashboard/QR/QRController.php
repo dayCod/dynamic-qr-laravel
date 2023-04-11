@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Dashboard\QR;
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\QR;
+use App\Models\ShortURL;
 use App\Models\Socmed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 class QRController extends Controller
 {
@@ -55,6 +58,14 @@ class QRController extends Controller
                 'string' => ($request->linkedin) ? $request->linkedin : $request->whatsapp,
                 'type' => ($request->linkedin) ? 'linkedin' : 'whatsapp',
             ])->save();
+
+            $url = $qr->socmed->type == "linkedin" ? $qr->socmed->string : whatsappUrl($qr->socmed->string);
+
+            $builder = new \AshAllenDesign\ShortURL\Classes\Builder();
+
+            if (empty($shortUrlModel)) {
+                $builder->destinationUrl($url)->urlKey(Str::slug($qr->employee->name))->make();
+            }
 
             DB::commit();
 
@@ -146,5 +157,29 @@ class QRController extends Controller
         ];
 
         return response()->json(['success' => $result->message], 200);
+    }
+
+    public function qrProccessing($url_key, $id)
+    {
+        $data['destination'] = null;
+
+        $qr = QR::find($id);
+
+        if ($qr->limit >= 1) {
+            $qr->update([
+                'limit' => ($qr->limit - 1),
+                'status' => '0'
+            ]);
+            $model = ShortURL::where('url_key', $url_key)->first();
+
+            $data['destination'] = $model->destination_url;
+
+        } elseif ($qr->limit == 0) {
+            $qr->update(['status' => '1']);
+
+            $data['destination'] = url('/') . '/error/page-expired';
+        }
+
+        return Redirect::to($data['destination']);
     }
 }

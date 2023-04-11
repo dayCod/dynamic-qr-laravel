@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('employee_id')->constrained('employees')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->integer('limit')->default(3);
+            $table->enum('status', [0, 1])->comment('0:valid, 1:invalid');
             $table->integer('created_at');
             $table->integer('updated_at');
             $table->integer('deleted_at')->nullable();
