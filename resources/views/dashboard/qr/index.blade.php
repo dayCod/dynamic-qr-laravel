@@ -73,7 +73,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td class="text-center" colspan="6">{{ __('Data Kosong') }}</td>
+                                    <td class="text-center" colspan="7">{{ __('Data Kosong') }}</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -86,6 +86,6 @@
 
 @push('scripts')
 <script>
-    $(document).ready(function() { unixTimezone('{!! json_encode($qrs) !!}') })
+    $(document).ready(function() { unixTimezone('{!! json_encode($qrs) !!}') } )
 </script>
 @endpush

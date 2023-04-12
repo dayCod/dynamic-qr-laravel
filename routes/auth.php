@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,5 +25,7 @@ Route::prefix('/auth')->group(function() {
             ->middleware(['guest'])
             ->name('auth.authenticate');
     });
-
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/logout', [LogoutController::class, 'logout'])->name('auth.logout');
+    });
 });
